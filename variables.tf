@@ -15,7 +15,7 @@ variable "aws_secret_key" {
 
 variable "aws_amis" {
   default = {
-    ap-southeast-2 = "ami-05d988b934994573c"
+    ap-southeast-2 = "ami-0df609f69029c9bdb"
   }
 }
 

@@ -7,6 +7,5 @@ output "ip_addresses" {
 }
 
 output "keyvalue" {
-  value     = tls_private_key.oskey.public_key_openssh
-  sensitive = true
+  value = tls_private_key.oskey.public_key_openssh
 }

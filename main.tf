@@ -5,12 +5,14 @@ terraform {
       version = "~> 4.0"
     }
   }
+  backend "s3" {
+    bucket = "terraform-state-bucket-ls-demo"
+    key    = "demo-terraform-project"
+    region = "ap-southeast-2"
+  }
 }
 provider "aws" {
-  access_key                  = var.aws_access_key
-  secret_key                  = var.aws_secret_key
-  region                      = var.aws_region
-  skip_credentials_validation = true
+  region = var.aws_region
 }
 
 
