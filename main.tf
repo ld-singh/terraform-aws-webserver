@@ -1,20 +1,15 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-  }
-  backend "s3" {
-    bucket = "terraform-state-bucket-ls-demo"
-    key    = "demo-terraform-project"
-    region = "ap-southeast-2"
-  }
-}
-provider "aws" {
-  region = var.aws_region
-}
+#---------------------------------------------------------------------
+# DEMO Terraform
+#
+# Build Web server
+#---------------------------------------------------------------------
 
+#===================
+# create AWS resources
+#===================
+
+
+# Create Security Group for use by Webserver
 
 resource "aws_security_group" "allow_ports" {
   name        = "allow_ssh_http_webserver"
@@ -51,6 +46,9 @@ resource "aws_security_group" "allow_ports" {
   }
 }
 
+
+#Create SSH Key to be used by EC2 instance
+
 resource "tls_private_key" "oskey" {
   algorithm = "RSA"
 }
@@ -64,6 +62,9 @@ resource "aws_key_pair" "webserverkey" {
   key_name   = "myterrakey"
   public_key = tls_private_key.oskey.public_key_openssh
 }
+
+
+# Create Ec2 instance for webserver
 
 resource "aws_instance" "webserver" {
   instance_type          = var.instance_type
