@@ -39,6 +39,9 @@ jobs:
 
         echo "** Running Terraform Apply**"
         terraform apply -auto-approve
+        
+        echo "** Copy new pem key to S3 **"
+        aws s3 cp myterrakey.pem s3://terraform-state-bucket-ls-demo/myterrakey.pem
 
     - name: Wait for EC2 init checks to complete
       run: sleep 300
