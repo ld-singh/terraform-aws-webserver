@@ -3,7 +3,7 @@ output "webserver_ids" {
 }
 
 output "ip_addresses" {
-  value = ["${aws_instance.webserver.*.id}"]
+  value = ["${aws_instance.webserver.*.public_ip}"]
 }
 
 output "keyvalue" {
