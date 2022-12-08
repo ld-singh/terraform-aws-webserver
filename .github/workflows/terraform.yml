@@ -42,10 +42,8 @@ jobs:
 
     - name: Wait for EC2 init checks to complete
       run: sleep 300
-  call-workflow-1-in-local-repo:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
+    - name: Deploy docker image
+      run: |
           curl -X POST \
           -H "Authorization: Bearer ${{secrets.GIT_TOKEN}}" \
           -H "Accept: application/vnd.github.v3+json" \
